@@ -34,5 +34,10 @@ get '/newpost' do
  post '/newpost' do
 	content = params[:content]
 
+	if content.length <= 0
+		@error = 'Type text'
+		return erb :newpost
+	end
+
 	erb "You typed #{content}"
  end
