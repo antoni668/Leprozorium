@@ -45,3 +45,9 @@ get '/newpost' do
 	redirect to '/'
 	erb "You typed #{content}"
  end
+
+ get '/details/:post_id' do
+	post_id = params[:post_id]
+
+	erb "#{post_id}"
+ end
