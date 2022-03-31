@@ -49,5 +49,8 @@ get '/newpost' do
  get '/details/:post_id' do
 	post_id = params[:post_id]
 
-	erb "#{post_id}"
+	@results = @db.execute 'select * from Posts where Id = ?', [post_id]
+	@row = @results[0]
+
+	erb :details
  end
