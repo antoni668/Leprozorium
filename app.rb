@@ -52,7 +52,6 @@ get '/newpost' do
 	@db.execute 'insert into Posts (content, created_date) values (?, datetime())', content
 
 	redirect to '/'
-	erb "You typed #{content}"
  end
 
  get '/details/:post_id' do
@@ -67,4 +66,8 @@ get '/newpost' do
  post '/details/:post_id' do
 	post_id = params[:post_id]
 	content = params[:content]
+
+	@db.execute 'insert into Comments (content, created_date, post_id) values (?, datetime(), ?)', [content, post_id]
+
+	redirect to('/details/' + post_id)
  end
