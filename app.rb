@@ -15,11 +15,20 @@ end
 
 configure do
 	init_db
+
 	@db.execute 'CREATE TABLE IF NOT EXISTS Posts
 	(
 		Id INTEGER PRIMARY KEY AUTOINCREMENT,
 		created_date DATE,
 		content TEXT
+		)'
+
+		@db.execute 'CREATE TABLE IF NOT EXISTS Comments
+	(
+		Id INTEGER PRIMARY KEY AUTOINCREMENT,
+		created_date DATE,
+		content TEXT,
+		post_id INTEGER
 		)'
 end
 
@@ -53,4 +62,9 @@ get '/newpost' do
 	@row = @results[0]
 
 	erb :details
+ end
+
+ post '/details/:post_id' do
+	post_id = params[:post_id]
+	content = params[:content]
  end
