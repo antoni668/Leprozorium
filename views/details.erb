@@ -12,7 +12,20 @@
 
 <h4>Comments:</h4>
 
-<form action="/details/<%= result['Id'] %>" method="POST" role="form">
+<br>
+
+<% @comments.each do |comment| %>
+	<hr>
+	<p>
+		<%= comment['content'] %>
+		<br>
+		<span style="font-size:75%; color: #999">Added: <%= comment['created_date'] %></span>
+	</p>
+<% end %>
+
+<br>
+
+<form action="/details/<%= @row['Id'] %>" method="POST" role="form">
 	<div class="mb-3">
 		<textarea name="content" class="form-control" rows="6" placeholder="Type post text here"></textarea>
 	</div> <br>
